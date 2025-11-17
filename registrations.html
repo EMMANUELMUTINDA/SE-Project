@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Registrations - TEMS Admin</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Roboto', Arial, sans-serif; background: linear-gradient(135deg, #1e3c72 0%, #ff9800 100%); margin: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: rgba(255,255,255,0.97); border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); padding: 48px 40px; animation: fadeIn 1.2s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { font-size: 2.2rem; margin-bottom: 32px; color: #ff9800; text-align: center; letter-spacing: 1px; }
+        .banner { width: 100vw; background: #1e3c72; color: #fff; text-align: center; font-size: 1.3rem; font-weight: 700; padding: 14px 0 10px 0; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 0; position: relative; top: 0; left: 0; border-radius: 18px 18px 0 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 24px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(30,60,114,0.08); }
+        th, td { padding: 16px; border-bottom: 1px solid #eee; text-align: left; font-size: 1.08rem; }
+        th { background: #e3eafc; color: #1e3c72; font-weight: 700; }
+        tr:last-child td { border-bottom: none; }
+        .status { font-weight: 700; color: #388e3c; }
+        .attendee-icon { font-size: 1.3rem; color: #1e3c72; margin-right: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner">Track Registrations</div>
+        <h1><i class="fa-solid fa-users"></i> Track Registrations</h1>
+        <table>
+            <thead>
+                <tr><th>Attendee</th><th>Event</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="attendee-icon"><i class="fa-solid fa-user"></i></span>Jane Doe</td><td>AI Seminar 2025</td><td class="status">Confirmed</td></tr>
+                <tr><td><span class="attendee-icon"><i class="fa-solid fa-user"></i></span>John Smith</td><td>Cloud Hackathon</td><td class="status">Pending</td></tr>
+                <!-- More registrations here -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

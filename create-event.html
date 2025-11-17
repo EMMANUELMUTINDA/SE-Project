@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event - TEMS</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Roboto', Arial, sans-serif; background: linear-gradient(135deg, #ff9800 0%, #1e3c72 100%); margin: 0; }
+        .container { max-width: 600px; margin: 60px auto; background: rgba(255,255,255,0.97); border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); padding: 40px 32px; position: relative; }
+        h1 { font-size: 2rem; margin-bottom: 24px; text-align: center; color: #ff9800; }
+        .icon { font-size: 2.5rem; color: #1e3c72; display: block; text-align: center; margin-bottom: 18px; }
+        label { display: block; margin-bottom: 8px; font-weight: 700; color: #1e3c72; }
+        input, textarea, select { width: 100%; padding: 10px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #bbb; font-size: 1rem; transition: border 0.2s; }
+        input:focus, textarea:focus, select:focus { border: 1.5px solid #ff9800; }
+        .error { color: #d32f2f; margin-bottom: 10px; display: none; }
+        button { background: #1e3c72; color: #fff; padding: 12px 24px; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; width: 100%; font-size: 1.1rem; transition: background 0.2s; }
+        button:hover { background: #2a5298; }
+        .success { color: #388e3c; text-align: center; margin-top: 18px; display: none; }
+        .banner { position: absolute; top: -32px; left: 50%; transform: translateX(-50%); background: #1e3c72; color: #fff; padding: 8px 32px; border-radius: 12px; font-weight: 700; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner">Host Your Event!</div>
+        <span class="icon"><i class="fa-solid fa-calendar-plus"></i></span>
+        <h1>Create an Event</h1>
+        <form id="eventForm" autocomplete="off">
+            <label for="title">Event Title</label>
+            <input type="text" id="title" name="title" required>
+            <div id="titleError" class="error">Please enter an event title (min 3 characters).</div>
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+            <div id="dateError" class="error">Please select a valid future date.</div>
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" required>
+            <div id="locationError" class="error">Please enter a location.</div>
+            <label for="type">Type</label>
+            <select id="type" name="type" required>
+                <option value="">Select type</option>
+                <option value="seminar">Seminar</option>
+                <option value="hackathon">Hackathon</option>
+                <option value="workshop">Workshop</option>
+                <option value="conference">Conference</option>
+            </select>
+            <div id="typeError" class="error">Please select an event type.</div>
+            <label for="desc">Description</label>
+            <textarea id="desc" name="desc" rows="4" required></textarea>
+            <div id="descError" class="error">Please enter a description (min 10 characters).</div>
+            <button type="submit">Create Event</button>
+        </form>
+        <div id="successMsg" class="success">Event created successfully!</div>
+    </div>
+    <script>
+    const form = document.getElementById('eventForm');
+    const title = document.getElementById('title');
+    const date = document.getElementById('date');
+    const location = document.getElementById('location');
+    const type = document.getElementById('type');
+    const desc = document.getElementById('desc');
+    const titleError = document.getElementById('titleError');
+    const dateError = document.getElementById('dateError');
+    const locationError = document.getElementById('locationError');
+    const typeError = document.getElementById('typeError');
+    const descError = document.getElementById('descError');
+    const successMsg = document.getElementById('successMsg');
+    function isFutureDate(val) {
+        const today = new Date();
+        const d = new Date(val);
+        return d > today;
+    }
+    form.onsubmit = function(e) {
+        let valid = true;
+        if (title.value.trim().length < 3) {
+            titleError.style.display = 'block';
+            valid = false;
+        } else {
+            titleError.style.display = 'none';
+        }
+        if (!isFutureDate(date.value)) {
+            dateError.style.display = 'block';
+            valid = false;
+        } else {
+            dateError.style.display = 'none';
+        }
+        if (location.value.trim() === '') {
+            locationError.style.display = 'block';
+            valid = false;
+        } else {
+            locationError.style.display = 'none';
+        }
+        if (type.value === '') {
+            typeError.style.display = 'block';
+            valid = false;
+        } else {
+            typeError.style.display = 'none';
+        }
+        if (desc.value.trim().length < 10) {
+            descError.style.display = 'block';
+            valid = false;
+        } else {
+            descError.style.display = 'none';
+        }
+        if (!valid) {
+            e.preventDefault();
+            return false;
+        }
+        successMsg.style.display = 'block';
+        setTimeout(function(){ successMsg.style.display = 'none'; }, 2000);
+        // Simulate event creation
+        e.preventDefault();
+    };
+    </script>
+</body>
+</html>

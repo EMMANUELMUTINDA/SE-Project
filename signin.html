@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - TEMS</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Roboto', Arial, sans-serif; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); margin: 0; }
+        .container { max-width: 400px; margin: 60px auto; background: rgba(255,255,255,0.95); border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); padding: 40px 32px; position: relative; }
+        h1 { font-size: 2rem; margin-bottom: 24px; text-align: center; color: #1e3c72; }
+        .icon { font-size: 2.5rem; color: #ff9800; display: block; text-align: center; margin-bottom: 18px; }
+        label { display: block; margin-bottom: 8px; font-weight: 700; color: #1e3c72; }
+        input { width: 100%; padding: 10px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #bbb; font-size: 1rem; transition: border 0.2s; }
+        input:focus { border: 1.5px solid #2a5298; }
+        .error { color: #d32f2f; margin-bottom: 10px; display: none; }
+        button { background: #ff9800; color: #fff; padding: 12px 24px; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; width: 100%; font-size: 1.1rem; transition: background 0.2s; }
+        button:hover { background: #e67e22; }
+        .success { color: #388e3c; text-align: center; margin-top: 18px; display: none; }
+        .banner { position: absolute; top: -32px; left: 50%; transform: translateX(-50%); background: #ff9800; color: #fff; padding: 8px 32px; border-radius: 12px; font-weight: 700; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner">Welcome Back!</div>
+        <span class="icon"><i class="fa-solid fa-user-lock"></i></span>
+        <h1>Sign In</h1>
+        <form id="signInForm" autocomplete="off">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <div id="emailError" class="error">Please enter a valid email address.</div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="8">
+            <div id="pwError" class="error">Password must be at least 8 characters and contain a number and a letter.</div>
+            <button type="submit">Sign In</button>
+            <div style="text-align:center;margin-top:18px;">
+                <span>Don't have an account?</span>
+                <a href="signup.html" style="color:#ff9800;font-weight:700;text-decoration:underline;margin-left:6px;">Create Account</a>
+            </div>
+        </form>
+        <div id="successMsg" class="success">Sign in successful! Redirecting...</div>
+    </div>
+    <script>
+    const form = document.getElementById('signInForm');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const emailError = document.getElementById('emailError');
+    const pwError = document.getElementById('pwError');
+    const successMsg = document.getElementById('successMsg');
+    function validateEmail(val) {
+        return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val);
+    }
+    function validatePassword(val) {
+        return val.length >= 8 && /[A-Za-z]/.test(val) && /[0-9]/.test(val);
+    }
+    form.onsubmit = function(e) {
+        let valid = true;
+        if (!validateEmail(email.value)) {
+            emailError.style.display = 'block';
+            valid = false;
+        } else {
+            emailError.style.display = 'none';
+        }
+        if (!validatePassword(password.value)) {
+            pwError.style.display = 'block';
+            valid = false;
+        } else {
+            pwError.style.display = 'none';
+        }
+        if (!valid) {
+            e.preventDefault();
+            return false;
+        }
+        successMsg.style.display = 'block';
+        setTimeout(function(){ successMsg.style.display = 'none'; }, 2000);
+        // Simulate redirect
+        e.preventDefault();
+    };
+    </script>
+    </div>
+</body>
+</html>

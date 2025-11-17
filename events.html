@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Events - TEMS</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Roboto', Arial, sans-serif; background: linear-gradient(135deg, #ff9800 0%, #1e3c72 100%); margin: 0; }
+        .container { max-width: 900px; margin: 40px auto; background: rgba(255,255,255,0.97); border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); padding: 40px 32px; position: relative; }
+        h1 { font-size: 2.2rem; margin-bottom: 24px; text-align: center; color: #1e3c72; }
+        .search-bar { width: 100%; padding: 14px; margin-bottom: 24px; border-radius: 10px; border: 1.5px solid #ff9800; font-size: 1.1rem; }
+        .event-list { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+        .event { background: linear-gradient(135deg, #e3eafc 0%, #fff 100%); border-radius: 12px; padding: 24px; flex: 1 1 250px; min-width: 220px; box-shadow: 0 2px 8px rgba(30,60,114,0.08); transition: transform 0.2s, box-shadow 0.2s; position: relative; cursor: pointer; }
+        .event:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(30,60,114,0.15); }
+        .event-title { font-weight: 700; font-size: 1.3rem; margin-bottom: 8px; color: #ff9800; }
+        .event-details { font-size: 1rem; margin-bottom: 12px; color: #1e3c72; }
+        .buy-btn { background: #1e3c72; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: background 0.2s; display: inline-block; }
+        .buy-btn:hover { background: #ff9800; color: #fff; }
+        .event-icon { font-size: 2.2rem; color: #1e3c72; margin-bottom: 10px; }
+        #modal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(30,60,114,0.7); z-index:1000; align-items:center; justify-content:center; }
+        #modal > div { background:#fff; color:#222; padding:32px; border-radius:16px; max-width:400px; box-shadow:0 8px 32px rgba(0,0,0,0.2); position:relative; animation: fadeIn 0.5s; }
+        #closeModal { position:absolute; top:12px; right:18px; font-size:1.5rem; cursor:pointer; color:#1e3c72; }
+        #modalTitle { color: #ff9800; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @media (max-width: 600px) {
+            .container { padding: 18px 8px; }
+            .event-list { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fa-solid fa-calendar-days"></i> Browse Events</h1>
+        <input type="text" id="search" class="search-bar" placeholder="🔍 Search events by name, type, or category...">
+        <div class="event-list" id="eventList">
+            <div class="event" onclick="showDetails('AI Seminar 2025', 'Nov 20, 2025', 'Main Auditorium', 'A seminar on AI trends and research.')">
+                <span class="event-icon"><i class="fa-solid fa-robot"></i></span>
+                <div class="event-title">AI Seminar 2025</div>
+                <div class="event-details">Date: Nov 20, 2025<br>Location: Main Auditorium</div>
+                <a class="buy-btn" href="tickets.html"><i class="fa-solid fa-ticket"></i> Buy Ticket</a>
+            </div>
+            <div class="event" onclick="showDetails('Cloud Hackathon', 'Dec 5, 2025', 'Innovation Lab', 'A hackathon focused on cloud solutions.')">
+                <span class="event-icon"><i class="fa-solid fa-cloud"></i></span>
+                <div class="event-title">Cloud Hackathon</div>
+                <div class="event-details">Date: Dec 5, 2025<br>Location: Innovation Lab</div>
+                <a class="buy-btn" href="tickets.html"><i class="fa-solid fa-ticket"></i> Buy Ticket</a>
+            </div>
+            <!-- Add more events here -->
+        </div>
+        <div id="modal">
+            <div>
+                <span id="closeModal">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <p id="modalDate"></p>
+                <p id="modalLocation"></p>
+                <p id="modalDesc"></p>
+            </div>
+        </div>
+        <script>
+            function showDetails(title, date, location, desc) {
+                document.getElementById('modal').style.display = 'flex';
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalDate').textContent = 'Date: ' + date;
+                document.getElementById('modalLocation').textContent = 'Location: ' + location;
+                document.getElementById('modalDesc').textContent = desc;
+            }
+            document.getElementById('closeModal').onclick = function() {
+                document.getElementById('modal').style.display = 'none';
+            };
+            document.getElementById('search').oninput = function() {
+                var filter = this.value.toLowerCase();
+                var events = document.querySelectorAll('.event');
+                events.forEach(function(ev) {
+                    var text = ev.textContent.toLowerCase();
+                    ev.style.display = text.includes(filter) ? '' : 'none';
+                });
+            };
+        </script>
+    </div>
+</body>
+</html>

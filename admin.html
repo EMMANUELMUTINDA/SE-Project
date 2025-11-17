@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TEMS</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Roboto', Arial, sans-serif; background: linear-gradient(135deg, #1e3c72 0%, #ff9800 100%); margin: 0; }
+        .container { max-width: 900px; margin: 40px auto; background: rgba(255,255,255,0.97); border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); padding: 48px 40px; position: relative; animation: fadeIn 1.2s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { font-size: 2.5rem; margin-bottom: 32px; text-align: center; color: #1e3c72; letter-spacing: 1px; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; margin-bottom: 32px; }
+        .card { background: linear-gradient(135deg, #e3eafc 0%, #fff 100%); border-radius: 14px; box-shadow: 0 2px 8px rgba(30,60,114,0.08); padding: 32px 24px; text-align: center; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; position: relative; }
+        .card:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(30,60,114,0.15); }
+        .card i { font-size: 2.5rem; color: #ff9800; margin-bottom: 12px; }
+        .card-title { font-size: 1.2rem; font-weight: 700; color: #1e3c72; margin-bottom: 10px; }
+        .card-desc { font-size: 1rem; color: #444; margin-bottom: 18px; }
+        .output { background: #fffbe6; border-radius: 10px; box-shadow: 0 2px 8px rgba(255,152,0,0.08); padding: 18px; margin-bottom: 18px; color: #1e3c72; font-size: 1.05rem; display: none; }
+        .banner { width: 100vw; background: #ff9800; color: #fff; text-align: center; font-size: 1.3rem; font-weight: 700; padding: 14px 0 10px 0; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 0; position: absolute; top: -48px; left: 0; border-radius: 18px 18px 0 0; }
+            .banner { width: 100vw; background: #ff9800; color: #fff; text-align: center; font-size: 1.3rem; font-weight: 700; padding: 14px 0 10px 0; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 0; position: relative; top: 0; left: 0; border-radius: 18px 18px 0 0; }
+        @media (max-width: 600px) {
+            .container { padding: 18px 8px; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner">Admin Dashboard</div>
+        <h1><i class="fa-solid fa-user-gear"></i> Admin Dashboard</h1>
+        <div class="dashboard-grid">
+            <div class="card" onclick="window.location.href='create-event.html'">
+                <i class="fa-solid fa-calendar-plus"></i>
+                <div class="card-title">Create Event</div>
+                <div class="card-desc">Host a new seminar, hackathon, or workshop.</div>
+            </div>
+            <div class="card" onclick="window.location.href='manage-events.html'">
+                <i class="fa-solid fa-calendar-days"></i>
+                <div class="card-title">Manage Events</div>
+                <div class="card-desc">Edit, update, or delete existing events.</div>
+            </div>
+            <div class="card" onclick="window.location.href='proposals.html'">
+                <i class="fa-solid fa-file-signature"></i>
+                <div class="card-title">Approve/Reject Proposals</div>
+                <div class="card-desc">Review and act on submitted event proposals.</div>
+            </div>
+            <div class="card" onclick="window.location.href='registrations.html'">
+                <i class="fa-solid fa-users"></i>
+                <div class="card-title">Track Registrations</div>
+                <div class="card-desc">Monitor attendee registrations and status.</div>
+            </div>
+            <div class="card" onclick="window.location.href='reports.html'">
+                <i class="fa-solid fa-chart-line"></i>
+                <div class="card-title">Generate Reports</div>
+                <div class="card-desc">View analytics and download event reports.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
